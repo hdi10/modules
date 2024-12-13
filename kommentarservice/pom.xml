@@ -9,10 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.zelkulon.modules</groupId>
-	<artifactId>apigateway</artifactId>
+	<artifactId>kommentarservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>api-gateway-main</name>
-	<description>apigateway microservice</description>
+	<name>kommentar-service</name>
+	<description>kommentar und diskussion</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -27,18 +27,15 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>23</java.version>
-		<spring-cloud.version>2024.0.0</spring-cloud.version>
+		<java.version>17</java.version>
+		<spring-ai.version>1.0.0-M4</spring-ai.version>
 	</properties>
 	<dependencies>
 		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-gateway-mvc</artifactId>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.cloud</groupId>
-			<artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -46,17 +43,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	<dependencyManagement>
-		<dependencies>
-			<dependency>
-				<groupId>org.springframework.cloud</groupId>
-				<artifactId>spring-cloud-dependencies</artifactId>
-				<version>${spring-cloud.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+
 
 	<build>
 		<plugins>
@@ -66,5 +53,15 @@
 			</plugin>
 		</plugins>
 	</build>
+	<repositories>
+		<repository>
+			<id>spring-milestones</id>
+			<name>Spring Milestones</name>
+			<url>https://repo.spring.io/milestone</url>
+			<snapshots>
+				<enabled>false</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
 
 </project>

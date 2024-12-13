@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<!-- parent pom -->
-	<groupId>com.zelkulon.blogs</groupId>
+	<groupId>com.zelkulon.modules</groupId>
 	<artifactId>modules</artifactId>
 	<packaging>pom</packaging>
 	<version>1.0</version>
 
-	<name>modules </name>
+	<name>modules</name>
 	<description>Blog Microservice</description>
 	
 	 <!-- sub modules -->
@@ -17,6 +17,7 @@
         <module>zelkulonmicroservice</module>
         <module>authmicroservice</module>
        <!--  <module>zelkulonmicroservice</module> -->
+		<module>kommentarservice</module>
         <module>apigateway</module>
         <module>serviceregistry</module>
     </modules>

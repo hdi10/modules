@@ -7,14 +7,14 @@ spring:
   cloud:
     gateway:
       routes:
-        ## blogs-service ----> http://localhost:8080/songs/ port forwarding auf http://localhost:9010/songs/
+        ## blogs-service ----> http://localhost:8080/blogs/ port forwarding auf http://localhost:9010/blogs/
         - id: blogs-service
           uri: lb://blogs-service
           predicates:
             - Path=/blogs/**
 
         ## songLists-service ----> http://localhost:8080/songLists/ port forwarding auf http://localhost:9010/songLists/
-        - id: blogs-service
+        - id: bloglists-service
           uri: lb://blogs-service
           predicates:
             - Path=/blogLists/**
@@ -25,11 +25,11 @@ spring:
           predicates:
             - Path=/auth/**
 
-#        ## zelkulon-service ----> http://localhost:8080/zelkulon/ port forwarding auf http://localhost:9020
-#        - id: zelkulon-service
-#          uri: lb://zelkulon-service
-#          predicates:
-#            - Path=//**
+        ## ki-service ----> http://localhost:8080/kommentar/ port forwarding auf http://localhost:9020/kommentar
+        - id: kommentar-service
+          uri: lb://kommentar-service
+          predicates:
+            - Path=//**
 
 
 server:
