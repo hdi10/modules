@@ -1,0 +1,13 @@
+package com.zelkulon.authmicroservice;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.boot.test.context.SpringBootTest;
+
+@SpringBootTest
+class AuthMicroserviceMainApplicationTests {
+
+	@Test
+	void contextLoads() {
+	}
+
+}
