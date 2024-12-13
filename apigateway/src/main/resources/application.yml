@@ -1,0 +1,41 @@
+spring:
+  application:
+    name: api-gateway
+
+  ##GATEWAY CONFIGURATIONS
+
+  cloud:
+    gateway:
+      routes:
+        ## blogs-service ----> http://localhost:8080/songs/ port forwarding auf http://localhost:9010/songs/
+        - id: blogs-service
+          uri: lb://blogs-service
+          predicates:
+            - Path=/blogs/**
+
+        ## songLists-service ----> http://localhost:8080/songLists/ port forwarding auf http://localhost:9010/songLists/
+        - id: blogs-service
+          uri: lb://blogs-service
+          predicates:
+            - Path=/blogLists/**
+
+        ## auth-service ----> http://localhost:8080/auth/ port forwarding auf http://localhost:9000/auth/
+        - id: auth-service
+          uri: lb://auth-service
+          predicates:
+            - Path=/auth/**
+
+#        ## zelkulon-service ----> http://localhost:8080/zelkulon/ port forwarding auf http://localhost:9020
+#        - id: zelkulon-service
+#          uri: lb://zelkulon-service
+#          predicates:
+#            - Path=//**
+
+
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8090/eureka/
