@@ -8,14 +8,14 @@ spring:
     gateway:
       routes:
         ## blogs-service ----> http://localhost:8080/blogs/ port forwarding auf http://localhost:9010/blogs/
-        - id: blogs-service
-          uri: lb://blogs-service
+        - id: zelkulo-service
+          uri: lb://zelkulo-service
           predicates:
-            - Path=/blogs/**
+            - Path=/api/blogs/**
 
         ## songLists-service ----> http://localhost:8080/songLists/ port forwarding auf http://localhost:9010/songLists/
         - id: bloglists-service
-          uri: lb://blogs-service
+          uri: lb://zelkulo-service
           predicates:
             - Path=/blogLists/**
 
