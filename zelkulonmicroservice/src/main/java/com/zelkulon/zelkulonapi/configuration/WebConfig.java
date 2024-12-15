@@ -14,6 +14,9 @@ public class WebConfig implements WebMvcConfigurer {
         registry.addMapping("/**")
                 .allowedOrigins("http://localhost:8080")
                 .allowedOrigins( "http://localhost:3000")
+                .allowedOrigins(
+                        "https://new-homepage-e1db173cf8f1.herokuapp.com"
+                )
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // OPTIONS hinzufügen
                 .allowedHeaders("*")
                 .allowCredentials(true);
