@@ -16,7 +16,7 @@ public class WebConfig implements WebMvcConfigurer {
                 .allowedOrigins(
                         "https://new-homepage-e1db173cf8f1.herokuapp.com"
                 )
-                .allowedOrigins("https://new-homepage-e1db173cf8f1.herokuapp.com") // Ersetze durch die URL deines Frontends
+                .allowedOrigins("https://new-homepage-e1db173cf8f1.herokuapp.com/") // Ersetze durch die URL deines Frontends
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // OPTIONS hinzufügen
                 .allowedHeaders("*")
                 .allowCredentials(true);
