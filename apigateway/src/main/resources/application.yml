@@ -11,13 +11,13 @@ spring:
         - id: zelkulo-service
           uri: lb://zelkulo-service
           predicates:
-            - Path=/api/blogs/**
+            - Path=/api/blogs
 
         ## songLists-service ----> http://localhost:8080/songLists/ port forwarding auf http://localhost:9010/songLists/
         - id: bloglists-service
           uri: lb://zelkulo-service
           predicates:
-            - Path=/api/blogLists/**
+            - Path=/api/blogs/**
 
         ## auth-service ----> http://localhost:8080/auth/ port forwarding auf http://localhost:9000/auth/
         - id: auth-service
