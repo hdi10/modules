@@ -17,7 +17,7 @@ spring:
         - id: bloglists-service
           uri: lb://zelkulo-service
           predicates:
-            - Path=/blogLists/**
+            - Path=/api/blogLists/**
 
         ## auth-service ----> http://localhost:8080/auth/ port forwarding auf http://localhost:9000/auth/
         - id: auth-service
@@ -29,7 +29,7 @@ spring:
         - id: kommentar-service
           uri: lb://kommentar-service
           predicates:
-            - Path=//**
+            - Path=/comments/**
 
 
 server:
