@@ -1,4 +1,3 @@
-/*
 package com.zelkulon.zelkulonapi.configuration;
 
 
@@ -12,12 +11,12 @@ public class WebConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
-        registry.addMapping("/api/blogs")
-                .allowedOrigins("http://localhost:3000")
+        registry.addMapping("/**")
+                .allowedOrigins("http://localhost:8080")
+                .allowedOrigins( "http://localhost:3000")
                 .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS") // OPTIONS hinzufügen
                 .allowedHeaders("*")
                 .allowCredentials(true);
     }
 }
 
-*/
