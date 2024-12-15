@@ -1,13 +1,17 @@
-spring:
-  application:
-    name: zelkulo-service
-server:
-  port: 9010
-
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8090/eureka/
-    register-with-eureka: true
-    fetch-registry: true
+#spring:
+#  application:
+#    name: zelkulon-service
+#server:
+#  port: 9010
+#
+#eureka:
+#  client:
+#    register-with-eureka: true
+#    service-url:
+#      defaultZone: http://localhost:8090/eureka/
+#  instance:
+#    instance-id: ${spring.application.name}:${server.port}
+#    prefer-ip-address: true
+#    lease-renewal-interval-in-seconds: 10
+#    lease-expiration-duration-in-seconds: 30
+#    non-secure-port: 9010

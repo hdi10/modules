@@ -1,14 +1,11 @@
 spring:
   application:
-    name: auth-service
+    name: kommentar-service
 server:
-  port: 9000
+  port: 9021
 
 
 eureka:
-  instance:
-     instance-id: auth-service:${server.port}
-
   client:
     service-url:
       defaultZone: http://localhost:8090/eureka/

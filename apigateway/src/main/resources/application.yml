@@ -1,41 +1,44 @@
-spring:
-  application:
-    name: api-gateway
-
-  ##GATEWAY CONFIGURATIONS
-
-  cloud:
-    gateway:
-      routes:
-        ## blogs-service ----> http://localhost:8080/blogs/ port forwarding auf http://localhost:9010/blogs/
-        - id: zelkulo-service
-          uri: lb://zelkulo-service
-          predicates:
-            - Path=/api/blogs
-
-        ## songLists-service ----> http://localhost:8080/songLists/ port forwarding auf http://localhost:9010/songLists/
-        - id: bloglists-service
-          uri: lb://zelkulo-service
-          predicates:
-            - Path=/api/blogs/**
-
-        ## auth-service ----> http://localhost:8080/auth/ port forwarding auf http://localhost:9000/auth/
-        - id: auth-service
-          uri: lb://auth-service
-          predicates:
-            - Path=/auth/**
-
-        ## ki-service ----> http://localhost:8080/kommentar/ port forwarding auf http://localhost:9020/kommentar
-        - id: kommentar-service
-          uri: lb://kommentar-service
-          predicates:
-            - Path=/comments/**
-
-
-server:
-  port: 8080
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8090/eureka/
+#spring:
+#  application:
+#    name: api-gateway
+#
+#  ##GATEWAY CONFIGURATIONS
+#
+#server:
+#  port: 8080
+#
+#eureka:
+#  client:
+#    service-url:
+#      defaultZone: http://localhost:8090/eureka/
+#
+#  cloud:
+#    gateway:
+#      routes:
+#        - id: zelkulon-service
+#          uri: http://localhost:9010
+#          predicates:
+#            - Path=/api/blogs/**
+#
+##        ## songLists-service ----> http://localhost:8080/blogLists/ port forwarding auf http://localhost:9010/songLists/
+##        - id: zelkulo-service-blogLists
+##          uri: lb://zelkulo-service
+##          predicates:
+##            - Path=/api/blogs/**
+##          filters:
+##            - RewritePath=/api/blogs/(?<segment>.*), /${segment}
+#
+#
+#        ## auth-service ----> http://localhost:8080/auth/ port forwarding auf http://localhost:9000/auth/
+#        - id: auth-service
+#          uri: lb://auth-service
+#          predicates:
+#            - Path=/auth/**
+#
+#        ## ki-service ----> http://localhost:8080/kommentar/ port forwarding auf http://localhost:9021/kommentar
+#        - id: kommentar-service
+#          uri: lb://kommentar-service
+#          predicates:
+#            - Path=/comments/**
+#
+#
