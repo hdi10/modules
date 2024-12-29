@@ -1,7 +1,7 @@
 package com.zelkulon.zelkulonapi.blogs.core.domain.service.impl;
-/**
- * Dastekin created on 12.07.2023 the BlogService-Class inside the package - de.dastekin.zelkulon.blogs.core.domain.service.impl
- */
+//
+ //* Dastekin created on 12.07.2023 the BlogService-Class inside the package - de.dastekin.zelkulon.blogs.core.domain.service.impl
+ //*/
 
 /*
 
@@ -116,13 +116,19 @@ public class BlogService {
 
 import com.zelkulon.zelkulonapi.blogs.core.domain.model.Blog;
 import com.zelkulon.zelkulonapi.blogs.core.domain.service.interfaces.BlogRepository;
+
+import org.apache.log4j.Logger;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
 public class BlogService {
+    Logger logger = Logger.getLogger(BlogService.class.getName());
 
     private final BlogRepository blogRepository;
 
@@ -140,5 +146,42 @@ public class BlogService {
 
     public Blog createBlog(Blog blog) {
         return blogRepository.save(blog);
+    }
+
+    public ResponseEntity<?> updateBlog(Long id, Blog blogToPUT){
+
+        Long blogId = blogToPUT.getId().longValue();
+        logger.info("übergebene ID " + id + "mit songToPut.getId() " + blogToPUT.getId());
+        logger.info("der songtoPut lautet " + blogToPUT);
+
+        Blog blogToUpdate = blogRepository.findBlogById(id);
+        logger.info("id " + id + "mit blogToUpdate.getId() " + blogToUpdate.getId());
+        logger.info("blogToUpdate " + blogToUpdate);
+
+        if (blogId.equals(id)) {
+
+            if (!Objects.equals(blogToUpdate.getTitle(), blogToPUT.getTitle()) && blogToPUT.getTitle()!=null) {
+                blogToUpdate.setTitle(blogToPUT.getTitle());
+                logger.info("blogToUpdate.getTitle() " + blogToUpdate.getTitle());
+                logger.info("songToPut.getTitle() " + blogToPUT.getTitle());
+
+            }
+            if (!Objects.equals(blogToUpdate.getArtist(), blogToPUT.getArtist()) && blogToPUT.getArtist()!=null) {
+                blogToUpdate.setArtist(blogToPUT.getArtist());
+            }
+            if (!Objects.equals(blogToUpdate.getLocation(), blogToPUT.getLocation()) && blogToPUT.getLocation()!=null) {
+                blogToUpdate.setLocation(blogToPUT.getLocation());
+            }
+            if (!Objects.equals(blogToUpdate.getTimestamp(), blogToPUT.getTimestamp()) && blogToPUT.getTimestamp()!=null) {
+                blogToUpdate.setTimestamp(blogToPUT.getTimestamp());
+            }
+
+            blogRepository.save(blogToUpdate);
+
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+
     }
 }

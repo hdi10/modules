@@ -7,6 +7,9 @@ import com.zelkulon.zelkulonapi.blogs.core.domain.model.Blog;
 
 import com.zelkulon.zelkulonapi.blogs.core.domain.service.impl.BlogService;
 
+import org.slf4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 
@@ -16,8 +19,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/blogs")
-public class BlogController {
+public class BlogController extends Authorization{
+    Logger logger = org.slf4j.LoggerFactory.getLogger(BlogController.class);
 
+    @Autowired
     private final BlogService blogService;
 
     public BlogController(BlogService blogService) {
@@ -39,6 +44,32 @@ public class BlogController {
     @PostMapping
     public ResponseEntity<Blog> createBlog(@RequestBody Blog blog) {
         return ResponseEntity.ok(blogService.createBlog(blog));
+    }
+
+    @PutMapping (value = "/{id}",
+    consumes = "application/json",
+    produces = "application/json")
+    public ResponseEntity<?>
+    updateBlog(
+            @RequestHeader("Authorization") String authToken,
+            @PathVariable(value = "id") Long id,
+            @RequestBody Blog blogToPut) {
+        try {
+            String currentUser = authUser(authToken).block();
+
+            logger.info("id: " + id);
+            logger.info("blogToPut: " + blogToPut);
+            logger.info("Current User: " + currentUser);
+
+            ResponseEntity<?> myResponse = blogService.updateBlog(id, blogToPut);
+
+            logger.info("myResponse: " + myResponse);
+
+            return myResponse;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
     }
 }
 

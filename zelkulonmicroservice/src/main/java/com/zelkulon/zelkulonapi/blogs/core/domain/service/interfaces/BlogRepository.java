@@ -77,4 +77,6 @@ public interface BlogRepository extends JpaRepository<Blog, Long> {
 
     // Suche Blogs nach Zeitstempel nach einem bestimmten Datum
     List<Blog> findByTimestampAfter(LocalDateTime timestamp);
+
+    Blog findBlogById(Long id);
 }
